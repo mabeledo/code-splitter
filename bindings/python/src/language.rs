@@ -1,7 +1,7 @@
+use pyo3::prelude::*;
 use std::collections::HashMap;
 use std::hash::Hash;
 use std::sync::OnceLock;
-use pyo3::prelude::*;
 use tree_sitter::Language as TreeSitterLanguage;
 
 #[pyclass(eq)]
@@ -18,14 +18,25 @@ impl Eq for Language {}
 
 static LANGUAGES: OnceLock<HashMap<Language, tree_sitter::Language>> = OnceLock::new();
 
-
 impl Language {
     fn init_languages() -> HashMap<Language, tree_sitter::Language> {
         HashMap::from([
-            (Language::Golang, tree_sitter::Language::new(tree_sitter_go::LANGUAGE)),
-            (Language::Markdown, tree_sitter::Language::new(tree_sitter_md::LANGUAGE)),
-            (Language::Python, tree_sitter::Language::new(tree_sitter_python::LANGUAGE)),
-            (Language::Rust, tree_sitter::Language::new(tree_sitter_rust::LANGUAGE))
+            (
+                Language::Golang,
+                tree_sitter::Language::new(tree_sitter_go::LANGUAGE),
+            ),
+            (
+                Language::Markdown,
+                tree_sitter::Language::new(tree_sitter_md::LANGUAGE),
+            ),
+            (
+                Language::Python,
+                tree_sitter::Language::new(tree_sitter_python::LANGUAGE),
+            ),
+            (
+                Language::Rust,
+                tree_sitter::Language::new(tree_sitter_rust::LANGUAGE),
+            ),
         ])
     }
 
@@ -34,4 +45,3 @@ impl Language {
         languages.get(self).unwrap().clone()
     }
 }
-
