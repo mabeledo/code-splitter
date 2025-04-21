@@ -26,19 +26,19 @@ where
     ///
     /// # Example: split by characters
     /// ```
+    /// use tree_sitter::Language;
     /// use code_splitter::{CharCounter, Splitter};
     ///
-    /// let lang = tree_sitter_md::language();
-    /// let splitter = Splitter::new(lang, CharCounter).unwrap();
+    /// let splitter = Splitter::new(Language::new(tree_sitter_md::LANGUAGE), CharCounter).unwrap();
     /// let chunks = splitter.split(b"hello, world!").unwrap();
     /// ```
     ///
     /// # Example: split by words
     /// ```
+    /// use tree_sitter::Language;
     /// use code_splitter::{Splitter, WordCounter};
     ///
-    /// let lang = tree_sitter_md::language();
-    /// let splitter = Splitter::new(lang, WordCounter).unwrap();
+    /// let splitter = Splitter::new(Language::new(tree_sitter_md::LANGUAGE), WordCounter).unwrap();
     /// let chunks = splitter.split(b"hello, world!").unwrap();
     /// ```
     ///
@@ -84,10 +84,10 @@ where
     ///
     /// # Example: set the maximum size to 256
     /// ```
+    /// use tree_sitter::Language;
     /// use code_splitter::{CharCounter, Splitter};
     ///
-    /// let lang = tree_sitter_md::language();
-    /// let splitter = Splitter::new(lang, CharCounter)
+    /// let splitter = Splitter::new(Language::new(tree_sitter_md::LANGUAGE), CharCounter)
     ///   .unwrap()
     ///   .with_max_size(256);
     /// let chunks = splitter.split(b"hello, world!").unwrap();
